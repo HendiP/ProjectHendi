@@ -1,0 +1,170 @@
+/* --- Variabel CSS Kustom (Warna Tema) --- */
+:root {
+    --primary-color: #1a237e;   /* Biru tua */
+    --secondary-color: #f44336; /* Merah */
+    --accent-color: #ffc107;    /* Kuning/Oranye */
+    --text-color: #333;         /* Abu-abu gelap */
+    --light-bg: #e3f2fd;        /* Biru sangat terang */
+    --white: #FFFFFF;           /* Putih */
+}
+
+/* --- Gaya Dasar Body (Dipertahankan) --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+/* --- Global Overrides (Mengatur warna default Bootstrap) --- */
+/* Mengganti warna primary Bootstrap dengan primary-color Anda */
+.btn-primary, .bg-primary {
+    --bs-btn-bg: var(--primary-color) !important;
+    --bs-btn-border-color: var(--primary-color) !important;
+    --bs-btn-hover-bg: #0d144e !important; /* Warna hover sedikit lebih gelap */
+    --bs-btn-hover-border-color: #0d144e !important;
+    --bs-body-bg: var(--light-bg); /* Latar belakang body Bootstrap */
+}
+
+/* Mengganti warna warning Bootstrap dengan accent-color Anda */
+.bg-warning {
+    --bs-bg-opacity: 1;
+    background-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Mengganti warna danger Bootstrap dengan secondary-color Anda (untuk cta-button) */
+.btn-danger {
+    --bs-btn-bg: var(--secondary-color) !important;
+    --bs-btn-border-color: var(--secondary-color) !important;
+    --bs-btn-hover-bg: #d32f2f !important;
+    --bs-btn-hover-border-color: #d32f2f !important;
+}
+
+/* --- Gaya Khusus yang Dipertahankan/Diadaptasi --- */
+
+/* Hero Section: Gradien dekoratif (tetap kustom) */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-color) 0%, rgba(255, 255, 255, 0) 50%);
+    opacity: 0.2;
+    z-index: 0;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Tombol CTA (menggabungkan Bootstrap dengan gaya kustom) */
+.cta-button {
+    padding: 18px 40px !important;
+    border-radius: 50px !important;
+    font-size: 1.4em !important;
+    font-weight: 600 !important;
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3) !important;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease !important;
+    background-color: var(--secondary-color) !important; /* Warna merah */
+    color: var(--white) !important;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 9px 18px rgba(244, 67, 54, 0.4) !important;
+}
+
+/* Garis bawah dekoratif di judul Section (tetap kustom) */
+.section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Product Card Image (tetap kustom) */
+.custom-card-img {
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* Product Card Hover (tetap kustom) */
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Tombol Beli Sekarang di Product Card (override padding & border-radius) */
+.buy-button {
+    padding: 12px 25px !important;
+    border-radius: 50px !important;
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+/* Animasi Pesan Registrasi (tetap kustom) */
+.registration-message {
+    animation: fadeInOut 0.8s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer Radius (tetap kustom) */
+footer.rounded-top-3 {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
+
+/* --- Media Queries (Beberapa mungkin bisa dihapus jika Bootstrap sudah handle) --- */
+/* Pertahankan hanya jika ada override spesifik yang tidak ditangani Bootstrap */
+
+@media (max-width: 768px) {
+    /* Font sizes untuk H1 dan P di hero section bisa di handle dengan utility classes Bootstrap, 
+       tapi jika ingin kontrol lebih halus, pertahankan ini. */
+    .hero-section h1 {
+        font-size: 2.5em; /* Tetap pertahankan jika ingin ukuran ini spesifik di md */
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .cta-button {
+        font-size: 1.2em !important;
+        padding: 15px 30px !important;
+    }
+    .section {
+        padding: 30px;
+    }
+    .section h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Kontainer width dihandle Bootstrap, tapi jika ingin 95% spesifik di xs, pertahankan */
+    .container {
+        width: 95%; 
+    }
+    .hero-section {
+        padding: 40px 20px;
+    }
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+}
